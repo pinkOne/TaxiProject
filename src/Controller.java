@@ -5,5 +5,4 @@
  *
  */
 public class Controller implements IController {
-    public void wait for
 }
