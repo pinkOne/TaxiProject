@@ -22,17 +22,10 @@ public class WebController {
         this.model = model;
     }
 
-    public void start(){
-        prepareRemoteToUser();
-        while (! "bye".equals(request = readRequest())){
-            processRequest(request);
-        }
-    }
-
     private class Request{
+
         URL request;
         Map<String, String> paramNValues;
-
         public Request(URL url) {
             this.request = request;
             paramNValues = new LinkedHashMap<String, String>();
@@ -51,11 +44,11 @@ public class WebController {
         public boolean containsParam(String paramName) {
             return paramNValues.containsKey(paramName);
         }
+
         public String getValue(String paramName) {
             return paramNValues.get(paramName);
         }
     }
-
     public String processRequest(String url) {
         Request request = null;
         try {
@@ -105,6 +98,13 @@ public class WebController {
         String introMessage = "Hello! This is TaxiProject. We glad to see you here.\n" +
                 "Please log in and have a good day! Type bye for exit.";
         System.out.println(introMessage);
+    }
+
+    public void start(){
+        prepareRemoteToUser();
+        while (! "bye".equals(request = readRequest())){
+            System.out.println( processRequest(request) );
+        }
     }
 
     public static void main(String[] args) {
