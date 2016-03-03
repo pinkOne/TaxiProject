@@ -4,9 +4,12 @@ package model;
  * Created by Iurii on 02.03.2016.
  */
 public interface IModel {
-    String logIn(String userName, String password);
-    String placeOrder(String userId , String str1, String str2);
-    String viewOrder(String personId, String orderNumber);
-    String pickOrder(String driverId, String orderNumber);
-    String closeOrder(String orderNumber);
+
+    Order placeOrder(int personId , String str1, String str2);
+    Order viewOrder (int personId, int orderNumber);
+    Order pickOrder (int personId, int orderNumber);
+    Order closeOrder (int personId, int orderNumber);
+    boolean addPerson(Person p);
+    int logIn (String userName, String pass);
+
 }
