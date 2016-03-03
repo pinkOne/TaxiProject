@@ -5,11 +5,11 @@ package model;
  */
 public interface IModel {
 
-    Order placeOrder(String userId , Address str1, Address str2);
-    Order viewOrder (String personId, int orderNumber);
-    Order pickOrder (String driverId, int orderNumber);
-    Order closeOrder (int OrderNymber);
-    boolean addPerson();
+    Order placeOrder(int personId , String str1, String str2);
+    Order viewOrder (int personId, int orderNumber);
+    Order pickOrder (int personId, int orderNumber);
+    Order closeOrder (int personId, int orderNumber);
+    boolean addPerson(Person p);
     int logIn (String userName, String pass);
 
 }

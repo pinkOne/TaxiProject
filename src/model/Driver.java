@@ -1,13 +1,13 @@
 package model;
 
 /**
- * Created by Iurii on 02.03.2016.
+ * Created by Iurii on 03.03.2016.
  */
-public class User extends Person {
+public class Driver  extends Person {
 
     private final String type = "User";
 
-    public User(String userName, String pass) {
+    public Driver(String userName, String pass) {
         super(userName, pass);
     }
 
@@ -18,10 +18,11 @@ public class User extends Person {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Driver{" +
                 "userName='" + userName + '\'' +
-                ", userId='" + personId + '\'' +
+                ", userId='" + userId + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }
+
 }
