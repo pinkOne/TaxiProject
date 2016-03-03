@@ -5,7 +5,7 @@ package model;
  */
 public class Driver  extends Person {
 
-    private final String type = "User";
+    private final String type = "Driver";
 
     public Driver(String userName, String pass) {
         super(userName, pass);
@@ -20,7 +20,7 @@ public class Driver  extends Person {
     public String toString() {
         return "Driver{" +
                 "userName='" + userName + '\'' +
-                ", userId='" + userId + '\'' +
+                ", userId='" + personId + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }

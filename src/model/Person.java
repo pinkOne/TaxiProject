@@ -11,6 +11,10 @@ public class Person {
     private static int count = 0;
     private final String type = "Person";
 
+    public String getUserName() {
+        return userName;
+    }
+
     public Person(String userName, String pass) {
         this.userName = userName;
         this.pass = pass;

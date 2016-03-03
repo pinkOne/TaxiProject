@@ -10,6 +10,7 @@ public class Order {
     private int orderId;
     static int count;
     private String state;
+    private String driver;
 
     public Order(String str1, String str2) {
         this.str1 = str1;
@@ -22,6 +23,10 @@ public class Order {
         this.state = state;
     }
 
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -29,6 +34,7 @@ public class Order {
                 ", str2='" + str2 + '\'' +
                 ", price=" + price +
                 ", orderId=" + orderId +
+                ", driver=" + driver +
                 ", state=" + state +
                 '}';
     }

@@ -45,6 +45,7 @@ public class Model implements IModel{
     public static Order changeOrder(Model m, int personId ,int orderNumber, String status) {
         if (m.getPersons().get(personId).getType().equals("Driver")) {
             m.orders.get(orderNumber).setState(status);
+            m.orders.get(orderNumber).setDriver(m.getPersons().get(personId).getUserName());
             return m.orders.get(orderNumber);
         } else throw new TypeNotPresentException("Just Driver can do this", null);
 
