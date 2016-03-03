@@ -1,6 +1,7 @@
 package controller;
 
 import model.Model;
+import model.Order;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -48,6 +49,18 @@ public class WebController {
         public String getValue(String paramName) {
             return paramNValues.get(paramName);
         }
+
+        public int getIntValue(String paramName) {
+            String value = paramNValues.get(paramName);
+            Integer result = null;
+            try {
+                result = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            if (result == null) result = -1;
+            return result;
+        }
     }
     public String processRequest(String url) {
         Request request = null;
@@ -57,25 +70,42 @@ public class WebController {
             e.printStackTrace();
         }
 
+        if (request == null) return "Wrong request retrieved.";
+
         // Web Requests like
         // person=PetroSalo&pass=123
-        if (request.containsParam("pass"))  response = model.logIn(request.getValue("userName"),
-                                                    request.getValue("password"));
+        if (request.containsParam("pass")) {
+            response = String.valueOf(model.logIn(request.getValue("userName"),
+                                    request.getValue("password")));
+        }
         // userId=11&street1=shevchenka 8&street2=fizkultury 28
-        if (request.containsParam("street1"))  response = model.placeOrder(request.getValue("userId"),
-                                                                request.getValue("street1"),
-                                                                request.getValue("street2"));
+        if (request.containsParam("street1")) {
+            response = model.placeOrder(request.getIntValue("userId"),
+                                        request.getValue("street1"),
+                                        request.getValue("street2"))
+                                        .toString();
+        }
         // personId=22&orderNumber=33&action=view
         if (request.containsParam("action")
-                && "view".equals(request.getValue("action"))) response = model.viewOrder(request.getValue("personId"),
-                                                                request.getValue("orderNumber"));
+                && "view".equals(request.getValue("action"))) {
+            Order order = model.viewOrder(request.getIntValue("personId"),
+                                            request.getIntValue("orderNumber"));
+            response = ( order == null)? "" : order.toString();
+        }
         // driverId=4&orderNumber=5&action=pick
         if (request.containsParam("action")
-                && "pick".equals(request.getValue("action"))) response = model.pickOrder(request.getValue("driverId"),
-                                                                request.getValue("orderNumber"));
+                && "pick".equals(request.getValue("action"))) {
+            response = model.pickOrder(request.getIntValue("driverId"),
+                                        request.getIntValue("orderNumber"))
+                                        .toString();
+        }
         //driverId=6&orderNumber=5&action=close
         if (request.containsParam("action")
-                && "close".equals(request.getValue("action"))) response = model.closeOrder(request.getValue("orderNumber"));
+                && "close".equals(request.getValue("action"))) {
+            response = model.closeOrder(request.getIntValue("driverId"),
+                                        request.getIntValue("orderNumber"))
+                                        .toString();
+        }
 
         return response;
     }

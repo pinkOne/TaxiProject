@@ -1,7 +1,10 @@
 package tests;
 
 import controller.WebController;
+import model.Driver;
 import model.Model;
+import model.Person;
+import model.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static tests.Test.checkResult;
@@ -10,32 +13,64 @@ import static tests.Test.checkResult;
  * Created by I on 2016-03-02.
  */
 public class WebControllerTest {
-
+    String request;
+    String result;
     WebController controller;
 
     @org.junit.Before
     public void setUp() throws Exception {
-        controller = new WebController(new Model());
+        Person first = new User("iurii","123");
+        Person second = new User("Viktor","123");
+        Person driver1 = new Driver("Shef", "poehali");
+
+        Model model = new Model();
+        model.addPerson(first);
+        model.addPerson(second);
+        model.addPerson(driver1);
+
+        controller = new WebController(model);
     }
 
     @Test
-    public void testProcessRequest() throws Exception{
-        String request = "person=PetroSalo&pass=123";
-        checkResult("testProcessRequest " + request,
-                controller.processRequest(request).contains("logIn"));
+    public void testProcessRequestLogIn() throws Exception {
+        request = "person=PetroSalo&pass=123";
+        result = controller.processRequest(request);
+        System.out.println(result);
+        checkResult("testProcessRequestLogIn " + request,
+                result.contains("0"));
+    }
 
-        request = "userId=11&street1=shevchenka 8&street2=fizkultury 28";
-        checkResult("testProcessRequest " + request,
-                controller.processRequest(request).contains("placeOrder"));
+    @Test
+    public void testProcessRequestPlaceOrder() throws Exception {
+        request = "userId=0&street1=shevchenka 8&street2=fizkultury 28";
+        result = controller.processRequest(request);
+        System.out.println(result);
+        checkResult("testProcessRequestPlaceOrder " + request,
+                result.contains("Order"));
+    }
 
-        request = "personId=22&orderNumber=33&action=view";
-        checkResult("testProcessRequest " + request,
-                controller.processRequest(request).contains("viewOrder"));
+    @Test
+    public void testProcessRequestViewOrder() throws Exception {
 
-        request = "driverId=6&orderNumber=5&action=close";
-        checkResult("testProcessRequest " + request,
-                controller.processRequest(request).contains("closeOrder"));
+        request = "personId=0&orderNumber=0&action=view";
+        result = controller.processRequest(request);
+        System.out.println(result);
+        checkResult("testProcessRequestViewOrder " + request,
+                result.contains("Order"));
+    }
 
+    @Test
+    public void testProcessRequestCloseOrder() throws Exception {
+
+        //add order
+        request = "userId=0&street1=shevchenka 8&street2=fizkultury 28";
+        result = controller.processRequest(request);
+
+        request = "driverId=2&orderNumber=0&action=close";
+        result = controller.processRequest(request);
+        System.out.println(result);
+        checkResult("testProcessRequestCloseOrder " + request,
+                    result.contains("CLOSED"));
     }
 
 }
