@@ -34,18 +34,20 @@ public class Model implements IModel{
 
     @Override
     public Order pickOrder(int personId, int orderNumber) {
-        if (getPersons().get(personId).getType().equals("Driver")) {
-            orders.get(orderNumber).setState("In Prodgress");
-            return orders.get(orderNumber);
-        } else throw new TypeNotPresentException("Just Driver can pick up order", null);
+     return changeOrder(this, personId, orderNumber, "IN PROGRESS");
     }
 
     @Override
     public Order closeOrder(int personId ,int orderNumber) {
-        if (getPersons().get(personId).getType().equals("Driver")) {
-            orders.get(orderNumber).setState("Closed");
-            return orders.get(orderNumber);
-        } else throw new TypeNotPresentException("Just Driver can close order", null);
+        return changeOrder(this, personId, orderNumber, "CLOSED" );
+    }
+
+    public static Order changeOrder(Model m, int personId ,int orderNumber, String status) {
+        if (m.getPersons().get(personId).getType().equals("Driver")) {
+            m.orders.get(orderNumber).setState(status);
+            return m.orders.get(orderNumber);
+        } else throw new TypeNotPresentException("Just Driver can do this", null);
+
     }
 
     public ArrayList<Person> getPersons() {
