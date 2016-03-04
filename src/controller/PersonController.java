@@ -2,6 +2,7 @@ package controller;
 
 import model.IModel;
 import model.Order;
+import model.Person;
 import model.User;
 import view.IView;
 import view.LogInFailedView;
@@ -19,9 +20,10 @@ public class PersonController {
         if (request.containsParam("password")) {
             String userName = request.getValue("person");
             String password = request.getValue("password");
-            User user = model.logIn(userName, password);
-            if (user != null){
-                IView view = new LoggedInView(user);
+            Person person = model.logIn(userName, password);
+
+            if (person != null){
+                IView view = new LoggedInView(person);
                 response = view.show();
             }else{
                 IView view = new LogInFailedView(userName, password);
@@ -31,8 +33,7 @@ public class PersonController {
         // personId=22&orderNumber=33&action=view
         if (request.containsParam("action")
                 && "view".equals(request.getValue("action"))) {
-            Order order = model.viewOrder(request.getIntValue("personId"),
-                    request.getIntValue("orderNumber"));
+            Order order = model.getOrder(request.getIntValue("orderNumber"));
             response = ( order == null)? "" : order.toString();
         }
 

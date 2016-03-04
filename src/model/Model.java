@@ -54,7 +54,7 @@ public class Model implements IModel {
 
     }
 
-    private ArrayList<Person> getPersons() {
+    public ArrayList<Person> getPersons() {
         return persons;
     }
 
