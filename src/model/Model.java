@@ -7,11 +7,12 @@ import java.util.TreeSet;
 
 /**
  * Created by Iurii on 02.03.2016.
+ *
  */
 public class Model implements IModel{
 
-    ArrayList<Person> persons = new ArrayList<Person>();
-    ArrayList<Order> orders = new ArrayList<Order>();
+    ArrayList<Person> persons = new ArrayList<>();
+    ArrayList<Order> orders = new ArrayList<>();
 
     @Override
     public Order placeOrder(int personId , String str1, String str2) {
@@ -65,7 +66,7 @@ public class Model implements IModel{
     }
 
     @Override
-    public int logIn(String userName, String pass) {
-        return 0;
+    public User logIn(String userName, String pass) {
+        return  new User(userName, pass);
     }
 }

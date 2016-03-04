@@ -1,13 +1,13 @@
 package controller;
 
-import model.Model;
+import model.IModel;
 
 /**
  * Created by I on 2016-03-02.
  *
  */
 public class UserController implements IController {
-    public static String processRequest(Model model, Request request) {
+    public String processRequest(IModel model, Request request) {
         String response = null;
         // userId=11&street1=shevchenka 8&street2=fizkultury 28
         if (request.containsParam("street1")) {

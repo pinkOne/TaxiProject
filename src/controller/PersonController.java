@@ -1,20 +1,32 @@
 package controller;
 
-import model.Model;
+import model.IModel;
 import model.Order;
+import model.User;
+import view.IView;
+import view.LogInFailedView;
+import view.LoggedInView;
 
 /**
  * Created by I on 2016-03-04.
  *
  */
 public class PersonController {
-    public static String processRequest(Model model, Request request) {
+    public String processRequest(IModel model, Request request) {
         String response = null;
         // Web Requests like
-        // person=PetroSalo&pass=123
-        if (request.containsParam("pass")) {
-            response = String.valueOf(model.logIn(request.getValue("userName"),
-                    request.getValue("password")));
+        // person=PetroSalo&password=123
+        if (request.containsParam("password")) {
+            String userName = request.getValue("person");
+            String password = request.getValue("password");
+            User user = model.logIn(userName, password);
+            if (user != null){
+                IView view = new LoggedInView(user);
+                response = view.show();
+            }else{
+                IView view = new LogInFailedView(userName, password);
+                response = view.show();
+            }
         }
         // personId=22&orderNumber=33&action=view
         if (request.containsParam("action")

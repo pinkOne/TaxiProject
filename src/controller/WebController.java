@@ -1,8 +1,6 @@
 package controller;
 
-import model.Driver;
-import model.Model;
-import model.Order;
+import model.IModel;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -15,9 +13,9 @@ import java.net.URL;
 public class WebController {
     String request;
     String response;
-    Model model;
+    IModel model;
 
-    public WebController(Model model) {
+    public WebController(IModel model) {
         this.model = model;
     }
 
@@ -32,13 +30,16 @@ public class WebController {
         if (request == null) return "Wrong request retrieved.";
 
         if (request.containsParam("personId") || request.containsParam("person")){
-            response = PersonController.processRequest(model, request);
+            PersonController personController = new PersonController();
+            response = personController.processRequest(model, request);
         }else{
             if (request.containsParam("userId")){
-                response = UserController.processRequest(model, request);
+                UserController userController = new UserController();
+                response = userController.processRequest(model, request);
             }else{
                 if (request.containsParam("driverId")){
-                    response = DriverController.processRequest(model, request);
+                    DriverController driverController = new DriverController();
+                    response = driverController.processRequest(model, request);
                 }
             }
         }

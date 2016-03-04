@@ -11,6 +11,7 @@ import static tests.Test.checkResult;
 
 /**
  * Created by I on 2016-03-02.
+ *
  */
 public class WebControllerTest {
     String request;
@@ -33,11 +34,11 @@ public class WebControllerTest {
 
     @Test
     public void testProcessRequestLogIn() throws Exception {
-        request = "person=PetroSalo&pass=123";
+        request = "person=PetroSalo&password=123";
         result = controller.processRequest(request);
         System.out.println(result);
         checkResult("testProcessRequestLogIn " + request,
-                result.contains("0"));
+                result.contains("type"));
     }
 
     @Test

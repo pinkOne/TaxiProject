@@ -2,6 +2,7 @@ package model;
 
 /**
  * Created by Iurii on 02.03.2016.
+ *
  */
 public interface IModel {
 
@@ -10,6 +11,6 @@ public interface IModel {
     Order pickOrder (int personId, int orderNumber);
     Order closeOrder (int personId, int orderNumber);
     boolean addPerson(Person p);
-    int logIn (String userName, String pass);
+    User logIn (String userName, String pass);
 
 }

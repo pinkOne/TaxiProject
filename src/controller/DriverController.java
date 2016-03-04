@@ -1,13 +1,13 @@
 package controller;
 
-import model.Model;
+import model.IModel;
 
 /**
  * Created by I on 2016-03-02.
  *
  */
 public class DriverController implements IController {
-    public static String processRequest(Model model, Request request) {
+    public String processRequest(IModel model, Request request) {
         String response = null;
         // driverId=4&orderNumber=5&action=pick
         if (request.containsParam("action")
