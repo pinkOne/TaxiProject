@@ -33,8 +33,17 @@ public class WebControllerTest {
     }
 
     @Test
-    public void testProcessRequestLogIn() throws Exception {
+    public void testProcessRequestLogInUnknownUser() throws Exception {
         request = "person=PetroSalo&password=123";
+        result = controller.processRequest(request);
+        System.out.println(result);
+        checkResult("testProcessRequestLogInUnknownUser " + request,
+                ! result.contains("type"));
+    }
+
+    @Test
+    public void testProcessRequestLogIn() throws Exception {
+        request = "person=Viktor&password=123";
         result = controller.processRequest(request);
         System.out.println(result);
         checkResult("testProcessRequestLogIn " + request,
