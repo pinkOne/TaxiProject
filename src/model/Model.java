@@ -31,6 +31,8 @@ public class Model implements IModel {
         } else return orders.get(orderNumber);
     }
 
+
+
     public ArrayList<Order> getOrders() {
         return orders;
     }
@@ -90,5 +92,10 @@ public class Model implements IModel {
             return res;
         }
             return null;
+    }
+
+    @Override
+    public Person getOnePerson(int personId) {
+        return getPersons().get(personId);
     }
 }

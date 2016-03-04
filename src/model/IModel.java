@@ -16,6 +16,7 @@ public interface IModel {
     Person createPerson (String userName, String pass);
     Person logIn (String userName, String pass);
     ArrayList<Order> getNewOrders(int personId);
+    Person getOnePerson(int personId);
 
 
 
