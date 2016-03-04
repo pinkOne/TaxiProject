@@ -36,7 +36,6 @@ public class PersonController {
             Order order = model.getOrder(request.getIntValue("orderNumber"));
             response = ( order == null)? "" : order.toString();
         }
-
         return response;
     }
 }
