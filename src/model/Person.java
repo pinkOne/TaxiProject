@@ -29,6 +29,10 @@ public class Person {
         return type;
     }
 
+    public String getPass() {
+        return pass;
+    }
+
     public void setUserId(int userId) {
 
         this.personId = userId;

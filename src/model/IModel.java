@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Iurii on 02.03.2016.
  *
@@ -7,10 +9,14 @@ package model;
 public interface IModel {
 
     Order placeOrder(int personId , String str1, String str2);
-    Order viewOrder (int personId, int orderNumber);
+    Order getOrder ( int orderNumber);
     Order pickOrder (int personId, int orderNumber);
     Order closeOrder (int personId, int orderNumber);
     boolean addPerson(Person p);
-    User logIn (String userName, String pass);
+    Person createPerson (String userName, String pass);
+    Person logIn (String userName, String pass);
+    ArrayList<Order> getNewOrders(int personId);
+
+
 
 }

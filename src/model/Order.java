@@ -11,6 +11,7 @@ public class Order {
     static int count;
     private String state;
     private String driver;
+    private String Client;
 
     public Order(String str1, String str2) {
         this.str1 = str1;
@@ -21,6 +22,10 @@ public class Order {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public void setClient(String client) {
+        Client = client;
     }
 
     public void setDriver(String driver) {
@@ -37,5 +42,9 @@ public class Order {
                 ", driver=" + driver +
                 ", state=" + state +
                 '}';
+    }
+
+    public String getState() {
+        return state;
     }
 }
