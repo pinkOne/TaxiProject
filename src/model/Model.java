@@ -73,10 +73,15 @@ public class Model implements IModel {
 
     @Override
     public Person logIn(String userName, String pass) {
-        int index = persons.indexOf(userName);
-        if (persons.get(index).getPass().equals(pass)) {
-            return persons.get(index);
-        } else return null;
+        for (int ind=0; ind < persons.size(); ind++ ){
+            String uName = persons.get(ind).getUserName();
+            String upass = persons.get(ind).getPass();
+            if (uName.equals(userName)
+                    && upass.equals(pass)){
+                return persons.get(ind);
+            }
+        }
+        return null;
     }
 
     @Override
