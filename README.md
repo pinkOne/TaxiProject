@@ -19,3 +19,4 @@ Passed		testProcessRequestViewOrder personId=0&orderNumber=0&action=view
 Order{str1='shevchenka 8', str2='fizkultury 28', price=0.0, orderId=2, driver=Shef, state=CLOSED}
 
 Passed		testProcessRequestCloseOrder driverId=2&orderNumber=0&action=close
+
