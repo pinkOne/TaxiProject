@@ -62,6 +62,10 @@ public class WebControllerTest {
     @Test
     public void testProcessRequestViewOrder() throws Exception {
 
+        //add order
+        request = "userId=0&street1=shevchenka 8&street2=fizkultury 28";
+        result = controller.processRequest(request);
+
         request = "personId=0&orderNumber=0&action=view";
         result = controller.processRequest(request);
         System.out.println(result);
