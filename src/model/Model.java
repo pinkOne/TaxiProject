@@ -26,7 +26,7 @@ public class Model implements IModel {
 
     @Override
     public Order getOrder(int orderNumber) {
-        if (orderNumber < orders.size()) {
+        if (orderNumber >= orders.size()) {
             return null;
         } else return orders.get(orderNumber);
     }
@@ -73,6 +73,7 @@ public class Model implements IModel {
 
     @Override
     public Person logIn(String userName, String pass) {
+/*
         for (int ind=0; ind < persons.size(); ind++ ){
             String uName = persons.get(ind).getUserName();
             String upass = persons.get(ind).getPass();
@@ -82,6 +83,17 @@ public class Model implements IModel {
             }
         }
         return null;
+*/
+        int index =-1;
+        for (int i = 0; i < persons.size(); i++) {
+            if (persons.get(i).getUserName().equals(userName)){
+                index = i;
+                break;
+            }
+        }
+        if ((index >=0) && persons.get(index).getPass().equals(pass)) {
+            return persons.get(index);
+        } else return null;
     }
 
     @Override
